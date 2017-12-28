@@ -28,7 +28,6 @@ try {
     $response->send();
 }
 
-//404
 catch(\Symfony\Component\Routing\Exception\ResourceNotFoundException $e)
 {
     if($config->debugEnabled())
@@ -57,6 +56,26 @@ catch(Exception $e)
         header("Location:error");
         exit;
     }
+}
+catch(Error $e)
+{
+    if(isset($config))
+    {
+        if(method_exists($config,'debugEnabled'))
+        {
+            if($config->debugEnabled())
+            {
+                echo "You are seeing this message because you have debug enabled";
+                echo "<br/>";
+                echo "<pre>".print_r($e,true)."</pre>";
+                exit;
+            }
+        }
+    }
+
+    $response = new \Symfony\Component\HttpFoundation\Response("OOPS. An unknown error occurred");
+    $response->send();
+
 }
 
 

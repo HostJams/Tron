@@ -8,7 +8,7 @@
 
 return array(
     'projectDir'=>'tron3',
-    'debug'=>false,
+    'debug'=>true,
     'configureFor'=>'dev',
 
     '404msg'=>'We were not able to find the requested path. You may define a custom
