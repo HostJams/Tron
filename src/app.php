@@ -17,6 +17,11 @@ $routes = new RouteCollectionOverride();
 $routes->add('index',new Route('/index',array(
     '_controller'=>'Tron\Controller\Home\HomeController::indexAction')));
 
+$routes->add('404',new Route('/404',array(
+    '_controller'=>'Tron\Controller\Error\TronError::error404')));
+
+$routes->add('error',new Route('/error',array(
+    '_controller'=>'Tron\Controller\Error\TronError::allExceptions')));
 
 
 

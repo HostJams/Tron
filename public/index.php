@@ -27,9 +27,36 @@ try {
 
     $response->send();
 }
+
+//404
+catch(\Symfony\Component\Routing\Exception\ResourceNotFoundException $e)
+{
+    if($config->debugEnabled())
+    {
+        echo "You are seeing this message because you have debug enabled";
+        echo "<br/>";
+        echo "<pre>".print_r($e,true)."</pre>";
+    }
+
+    else
+    {
+        header('Location:404');
+        exit;
+    }
+}
 catch(Exception $e)
 {
-    echo "<pre>".print_r($e,true)."</pre>";
+    if($config->debugEnabled())
+    {
+        echo "You are seeing this message because you have debug enabled";
+        echo "<br/>";
+        echo "<pre>".print_r($e,true)."</pre>";
+    }
+    else
+    {
+        header("Location:error");
+        exit;
+    }
 }
 
 
